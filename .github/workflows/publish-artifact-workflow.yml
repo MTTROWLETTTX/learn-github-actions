@@ -1,0 +1,49 @@
+# This is a basic workflow to help you get started with Actions
+
+name: publish-artifact-workflow
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  # push:
+    # branches: [ "main" ]
+  # pull_request:
+    # branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+
+jobs:
+  
+  archive-build-artifact:
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      
+      - name: step 1 create a temp folder to download artifacts
+      - run: mkdir downloads
+
+      - name: step 2 add artifacts to publish to temp foler
+        run: |
+          cd downloads
+          echo 'alpha' > alpha.html
+          echo 'bravo' > bravo.html
+          echo 'charlie' > charlie.html
+          cd ..
+          
+      - name: step 3 use upload actions
+        uses: actions/upload-artifact@v2
+        with:
+          name: assets-for-download
+          path: downloads
+          
+          
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
