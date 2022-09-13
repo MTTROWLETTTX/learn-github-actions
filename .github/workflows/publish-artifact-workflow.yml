@@ -24,7 +24,7 @@ jobs:
     steps:
       
       - name: step 1 create a temp folder to download artifacts
-      - run: mkdir downloads
+        run: mkdir downloads
 
       - name: step 2 add artifacts to publish to temp foler
         run: |
