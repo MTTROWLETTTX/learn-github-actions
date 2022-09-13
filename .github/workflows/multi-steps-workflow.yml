@@ -25,42 +25,42 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     
-      - name: log the pre-build dispace
+      - name: Step 1 log the pre-build dispace
         run: df
         
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: checkout-code from main branch
+      - name: Step 2 checkout-code from main branch
         uses: actions/checkout@v3
 
-      - name: list all files and dirs
+      - name: Step 3 list all files and dirs
         run: ls -a
 
-      - name: setup JDK 1.8
+      - name: Step 4 setup JDK 1.8
         uses: actions/setup-java@v1
         with:
             java-version: 1.8
         
-      - name: build web app with maven
+      - name: Step 5 build web app with maven
         run: echo mvn -B package --file pom.xml
         
-      - name: build the native android app
+      - name: Step 6 build the native android app
         run: |
           echo Here is the ANDROID_SDK_ROOT
           echo $ANDROID_SDK_ROOT
           
-      - name: run Selenium test
+      - name: Step 7 run Selenium test
         run: |
           echo The SELENIUM_JAR_PATH
           echo $SELENIUM_JAR_PATH
           
-      - name: Log Build tool versions
+      - name: Step 8 Log Build tool versions
         run: |
           git --version
           mvn --version
           ant -version
           gradle --version
           
-      - name: log post build
+      - name: Step 9 log post build
         run: df
           
       
